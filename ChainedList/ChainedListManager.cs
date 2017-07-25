@@ -16,7 +16,7 @@ namespace ChainedLists
             _list = new List<Node>();
         }
 
-        private void GetChildsRecursive(List<Node> list, List<Node> parents)
+        private void GetChildrenRecursive(List<Node> list, List<Node> parents)
         {
             foreach (var node in parents)
             {
@@ -24,17 +24,17 @@ namespace ChainedLists
                 _orderedList.Add(node);
                 list.Remove(node);
 
-                var childs = GetChilds(node, list);
+                var childs = GetChildren(node, list);
 
                 if (childs != null && childs.Any())
                 {
                     _level++;
-                    GetChildsRecursive(list, childs);
+                    GetChildrenRecursive(list, childs);
                 }
             }
         }
 
-        private List<Node> GetChilds(Node node, List<Node> listBase)
+        private List<Node> GetChildren(Node node, List<Node> listBase)
         {
             var childs = listBase.Where(n => n.ParentId == node.Id)
                                  .OrderBy(x => x.Position)
@@ -62,7 +62,7 @@ namespace ChainedLists
             _list = list.ToList();
             var parents = GetParentsOf(_list);
             
-            GetChildsRecursive(_list, parents);
+            GetChildrenRecursive(_list, parents);
             
             return _orderedList;
         }
