@@ -35,7 +35,7 @@ namespace ChainedListsTest
         }      
 
         [Test, Category("GetOrderedList")]
-        public void should_add_levels_when_exists_childs()
+        public void should_add_levels_when_children_exists()
         {
             var nodes = manager.GetOrderedList(familly);
             var maxLevel = nodes.Max(x => x.Level);
@@ -43,7 +43,7 @@ namespace ChainedListsTest
         }
 
         [Test, Category("GetOrderedList")]
-        public void not_should_change_original_list()
+        public void should_not_change_original_list()
         {
             var before = familly.Count;
             var nodes = manager.GetOrderedList(familly);
